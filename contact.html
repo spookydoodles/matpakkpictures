@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>matpakk pictures</title>
+    <meta name="description" content="Wedding, concert and music video filmmaker.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Poppins:wght@500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="nav" id="nav">
+        <a class="brand" href="#top" aria-label="Back to top">
+            <span class="rec"><i class="dot"></i>REC</span>
+            <!-- <span class="rec"><i class="dot"></i>REC <em id="tc">00:00:00</em></span> -->
+            <b>m/p</b>
+        </a>
+        <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+        <nav id="menu">
+            <a href="./photos.html">Photogprahy</a>
+            <a href="./videos.html">Videos</a>
+            <a href="./musicvideos.html">Music Videos</a>
+            <a href="https://www.reeldreams.net/">Weddings</a>
+            <a href="./about.html">About</a>
+        </nav>
+    </header>
+
+    <section class="sec alt" id="contact">
+        <div class="sec-h rv"><span></span>
+            <h2>Contact</h2>
+            <p>Feel free to reach out with any questions or requests you have!</p>
+            <p class="full small">Or just message me at <a href="mailto:hello@example.com">kevely.mate@valami.com</a>.
+            </p>
+        </div>
+        <div class="contact">
+
+            <form class="form rv r" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                <label>Name (required)<input name="name" required autocomplete="name"></label>
+                <label>Email Address (required)<input name="email" type="email" required autocomplete="email"></label>
+                <label>Subject
+                    <select name="type">
+                        <option>Wedding</option>
+                        <option>Concert</option>
+                        <option>Music Video</option>
+                        <option>General inquiry</option>
+                    </select>
+                </label>
+                <label>Date<input name="date" type="date"></label>
+                <label class="full">Message<textarea name="message" rows="5" required></textarea></label>
+                <button class="btn full" type="submit">Submit</button>
+                <!-- <p class="full small">Vagy csak írj emailt: <a href="mailto:hello@example.com">kevely.mate@valami.com</a> vagy keress <a href="https://www.instagram.com/matpakk/">Instagramon.</a></p> -->
+            </form>
+
+        </div>
+    </section>
+
+    <footer>
+        <span>© <span id="yr"></span> Máté Kevély</span>
+        <span><a href="https://www.instagram.com/matpakk/">Instagram</a> · <a
+                href="https://www.reeldreams.net/">REELDREAMS</a></span>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
