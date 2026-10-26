@@ -89,6 +89,7 @@ function updateNavbar() {
 function setMenuOpen(isOpen) {
   menu.classList.toggle("open", isOpen);
   burger.setAttribute("aria-expanded", isOpen);
+  burger.setAttribute()
 }
 
 burger.addEventListener("click", function () {
