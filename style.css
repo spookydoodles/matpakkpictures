@@ -269,6 +269,7 @@ p {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  height: calc(var(--nav) + env(safe-area-inset-top));
   padding: env(safe-area-inset-top, 0) var(--pad) 0;
   color: #fff;
   /* transition: background .4s, color .4s, box-shadow .4s */
@@ -408,7 +409,8 @@ p {
 /* ---------- hero ---------- */
 .hero {
   position: relative;
-  min-height: 100svh;
+  min-height: 100vh;
+  min-height: 100lvh;
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -438,6 +440,8 @@ linear-gradient(to top, #000 0%, rgba(0, 0, 0, 0) 50%),
   position: relative;
   z-index: 2;
   padding: calc(var(--nav) + 30px) var(--pad) 90px;
+  padding-top: calc(var(--nav) + env(safe-area-inset-top) + 30px);
+  padding-bottom: calc(90px + (100lvh - 100svh));
   max-width: 900px
 }
 
@@ -508,6 +512,7 @@ linear-gradient(to top, #000 0%, rgba(0, 0, 0, 0) 50%),
   left: 50%;
   color: var(--white);
   bottom: 28px;
+  bottom: calc(28px + (100lvh - 100svh));
   transform: translateX(-50%);
   font-size: 11px;
   letter-spacing: .3em;
@@ -1188,16 +1193,17 @@ footer a:hover {
       transform: none;
       animation-name: bob-left;
     }
-.hero-in {
+/* .hero-in {
   position: relative;
   z-index: 2;
   padding: calc(var(--nav) + 30px) var(--pad) 90px;
+  padding-bottom: calc(90px + (100lvh - 100svh));
   max-width: 900px
-}
+} */
 
   .nav nav {
     position: fixed;
-    top: var(--nav);
+    top: calc(var(--nav) + env(safe-area-inset-top));
     left: 0;
     right: 0;
     flex-direction: column;
