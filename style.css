@@ -40,6 +40,7 @@ body {
   position: absolute;
   right: var(--pad);
   bottom: 28px;
+  bottom: calc(28px + (100lvh - 100svh));
   z-index: 2;
   display: flex;
   filter: invert(1);
@@ -508,6 +509,7 @@ linear-gradient(to top, #000 0%, rgba(0, 0, 0, 0) 50%),
 
 .scroll {
   position: absolute;
+  height: 32px;
   z-index: 2;
   left: 50%;
   color: var(--white);
@@ -1193,13 +1195,13 @@ footer a:hover {
       transform: none;
       animation-name: bob-left;
     }
-/* .hero-in {
+.hero-in {
   position: relative;
   z-index: 2;
   padding: calc(var(--nav) + 30px) var(--pad) 90px;
   padding-bottom: calc(90px + (100lvh - 100svh));
   max-width: 900px
-} */
+}
 
   .nav nav {
     position: fixed;
