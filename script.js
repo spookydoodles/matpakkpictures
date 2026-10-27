@@ -23,7 +23,7 @@ const VIDEOS = {
   ],
 
   musicvideos: [
-    { id: "huXEOj1BBoU", title: "Magidom - Állandó Változás", h: 300,},
+    { id: "huXEOj1BBoU", title: "Magidom - Állandó Változás", h: 300 },
     { id: "KivYRftLus0", title: "Magidom - Királydráma", h: 300 },
     { id: "8kePefatqBM", title: "Magidom - Van Az a Pénz", h: 300 },
     { id: "TAtm_aNAHqM", title: "Goodbye Darjeeling - No Idol", h: 300 },
@@ -255,4 +255,41 @@ const observer = new IntersectionObserver(
 
 document.querySelectorAll(".rv").forEach(function (element) {
   observer.observe(element);
+});
+
+const shortTiles = document.querySelectorAll(".short");
+
+function stopAllShorts() {
+  document.querySelectorAll(".short.playing").forEach(function (tile) {
+    tile.querySelector("iframe").remove();      // removing the iframe stops the video
+    tile.classList.remove("playing");
+  });
+}
+
+shortTiles.forEach(function (tile) {
+  const id = tile.dataset.id;
+  const img = tile.querySelector("img");
+
+  // sharper thumbnail if YouTube has one, otherwise keep the one from the HTML
+  const sharp = new Image();
+  sharp.onload = function () { if (sharp.naturalWidth > 200) img.src = sharp.src; };
+  sharp.src = "https://i.ytimg.com/vi/" + id + "/maxresdefault.jpg";
+
+  function play() {
+    if (tile.classList.contains("playing")) return;
+    stopAllShorts();                            // only one plays at a time
+    const frame = document.createElement("iframe");
+    frame.src = "https://www.youtube-nocookie.com/embed/" + id +
+                "?autoplay=1&playsinline=1&rel=0&loop=1&playlist=" + id;
+    frame.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
+    frame.allowFullscreen = true;
+    frame.title = img.alt;
+    tile.appendChild(frame);
+    tile.classList.add("playing");
+  }
+
+  tile.addEventListener("click", play);
+  tile.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") play();
+  });
 });

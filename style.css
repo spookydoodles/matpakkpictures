@@ -27,13 +27,13 @@ html {
 }
 
 body {
+  overflow-x: hidden;
   margin: 0;
   background: var(--bg);
   color: var(--ink);
   font-family: var(--sans);
   font-weight: 300;
   line-height: 1.7;
-  overflow-x: hidden
 }
 
 .logos {
@@ -76,7 +76,6 @@ a {
 
 .choices:hover img {
   transform: scale(1.12);
-  filter: none;
   transition: transform .9s cubic-bezier(.2, .8, .2, 1);
 }
 
@@ -113,13 +112,39 @@ a {
 
 .choices span {
   position: absolute;
+  font-weight: bold;
   display: grid;
   place-items: center;
   color: var(--white);
   inset: 0;
   font-size: 29px;
   letter-spacing: 0.2em;
-  /* background: rgba(0, 0, 0, 0.35); */
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.col img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .9s cubic-bezier(.2, .8, .2, 1);
+}
+
+.col:hover img {
+  transform: scale(1.08);
+}
+
+.col span {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  font-size: 22px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, .7);
 }
 
 h1,
@@ -148,60 +173,6 @@ p {
   object-fit: cover;
 } */
 
-.page-banner {
-  position: relative;
-  display: flex;
-  align-items: flex-end;
-  /* text sits at the bottom */
-  height: 40vh;
-  min-height: 420px;
-  overflow: hidden;
-}
-
-.page-banner img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* the fade: black at the bottom, plus soft shading at the top and left */
-.page-banner::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(to top, #000 0%, rgba(0, 0, 0, 0) 50%),
-    linear-gradient(to bottom, rgba(0, 0, 0, .7), rgba(0, 0, 0, 0) 30%),
-    linear-gradient(to right, rgba(0, 0, 0, .6), rgba(0, 0, 0, 0) 45%);
-}
-
-.page-banner-text {
-  position: relative;
-  z-index: 2;
-  /* above the fade */
-  width: 100%;
-  max-width: 1200px;
-  /* same width as your content, so the left edges line up */
-  margin: 0 auto;
-  padding: 0 var(--pad) 50px;
-}
-
-.page-banner .eyebrow {
-  margin: 0;
-  color: white;
-  font-size: 20px;
-  letter-spacing: 0.1em;
-  /* tighter than your default gold label */
-}
-
-.page-banner h1 {
-  font-size: clamp(56px, 8vw, 96px);
-  text-transform: uppercase;
-  letter-spacing: -0.01em;
-}
-
 /* ---------- scroll animations (replay every time) ---------- */
 .rv {
   opacity: 0;
@@ -228,20 +199,63 @@ p {
 }
 
 .gallery {
-  columns: 3 350px;
-  column-gap: 10px;
-  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 260px;
+  grid-auto-flow: dense;
+  /* fills holes so there are no gaps */
+  gap: 8px;
 }
 
-.gallery img {
-  display: block;
-  width: 100%;
-  height: auto;
-  margin-bottom: 8px;
-  break-inside: avoid;
-  transition: transform 0.25s ease;
-  cursor: zoom-in;
+.shot {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
 }
+
+.shot.wide {
+  grid-column: span 2;
+}
+
+.shot.tall {
+  grid-row: span 2;
+}
+
+.shot.big {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.shot img {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  margin: 0;
+  object-fit: cover;
+  display: block;
+  /* filter: saturate(.85) brightness(.9); */
+  transition: transform 1.2s cubic-bezier(.2, .8, .2, 1), filter .6s;
+}
+
+.shot:hover img {
+  transform: scale(1.07);
+  filter: brightness(1);
+  /* colors come alive on hover */
+}
+
+/* soft dark edge, like a vignette
+.shot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, .35), transparent 40%);
+  pointer-events: none;
+  transition: opacity .6s;
+}
+
+.shot:hover::after {
+  opacity: 0;
+} */
 
 /* ---------- navbar ---------- */
 .nav {
@@ -393,7 +407,6 @@ p {
 .hero {
   position: relative;
   min-height: 100svh;
-  margin-top: 0;
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -447,19 +460,19 @@ linear-gradient(to top, #000 0%, rgba(0, 0, 0, 0) 50%),
   font-weight: 400;
 }
 
-.hero-p {
+/* .hero-p {
   font-size: clamp(16px, 1.5vw, 20px);
   max-width: 520px;
   margin: 24px 0 0;
   opacity: .92
-}
+} */
 
-.row {
+/* .row {
   display: flex;
   gap: 14px;
   flex-wrap: wrap;
   margin-top: 34px
-}
+} */
 
 .btn {
   display: inline-block;
@@ -485,11 +498,6 @@ linear-gradient(to top, #000 0%, rgba(0, 0, 0, 0) 50%),
 .btn.ghost {
   background: transparent;
   border-color: rgba(255, 255, 255, .7)
-}
-
-.btn.ghost:hover {
-  background: #fff;
-  color: var(--ink)
 }
 
 .scroll {
@@ -523,7 +531,6 @@ linear-gradient(to top, #000 0%, rgba(0, 0, 0, 0) 50%),
 }
 
 .sec.alt {
-  background: black;
   padding: var(--pad);
 }
 
@@ -532,7 +539,6 @@ linear-gradient(to top, #000 0%, rgba(0, 0, 0, 0) 50%),
   display: grid;
   justify-items: center;
   grid-template-columns: auto 1fr;
-  column-gap: 22px;
   align-items: baseline;
   padding-bottom: 22px;
   /* border-bottom: 1px solid var(--line) */
@@ -557,11 +563,6 @@ linear-gradient(to top, #000 0%, rgba(0, 0, 0, 0) 50%),
 }
 
 /* about */
-
-#about {
-  background-color: rgb(0, 0, 0);
-}
-
 .about {
   display: grid;
   grid-template-columns: minmax(400px, 500px) 1fr;
@@ -569,22 +570,17 @@ linear-gradient(to top, #000 0%, rgba(0, 0, 0, 0) 50%),
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
-  padding-top: 150px;
+  padding-top: 0;
 }
 
 .photo {
   position: relative;
   margin: 0;
   aspect-ratio: 4/5;
-  object-fit:scale-down;
   overflow: hidden;
   border-radius: 20px;
   /* background: linear-gradient(160deg, #e9e1d3, #cfc2ab); */
   cursor: crosshair
-}
-
-.photo .rv .l {
-  border-radius: 10%;
 }
 
 .photo img {
@@ -696,10 +692,15 @@ linear-gradient(to top, #000 0%, rgba(0, 0, 0, 0) 50%),
   margin-bottom: 24px
 }
 
+.bio {
+  padding: 0 10px;
+}
+
 .bio p {
   max-width: 560px;
   margin: 0 0 18px;
-  color: #4a4540
+  color: #4a4540;
+  text-align: justify;
 }
 
 .bio .eyebrow {
@@ -772,14 +773,6 @@ linear-gradient(to top, #000 0%, rgba(0, 0, 0, 0) 50%),
   /* background:
   linear-gradient(to bottom, rgba(0, 0, 0, .7), rgba(0, 0, 0, 0) 30%); */
 }
-/* 
-.mgrid::after {
-  position: absolute;
-  inset: 0;
-  content: "";
-  background:
-  linear-gradient(to bottom, rgba(0, 0, 0, .7), rgba(0, 0, 0, 0) 30%),
-} */
 
 .mgrid .tile figcaption {
   inset: 0;
@@ -809,7 +802,15 @@ linear-gradient(to top, #000 0%, rgba(0, 0, 0, 0) 50%),
         rgba(0, 0, 0, .40) 5%,
         rgba(0, 0, 0, 0) 100%
         /* clear at the bottom */
-      );
+      ),
+      linear-gradient(to top,
+          rgba(0, 0, 0, 1) 0%,
+          /* solid black at the very top */
+          rgba(0, 0, 0, .40) 5%,
+          rgba(0, 0, 0, 0) 100%
+          /* clear at the bottom */
+        );
+      
   pointer-events: none;
 }
 
@@ -830,7 +831,15 @@ linear-gradient(to top, #000 0%, rgba(0, 0, 0, 0) 50%),
   container-type: size;
   /* filter: grayscale(1); */
   /* background: linear-gradient(135deg, #e9e1d3, #cfc2ab); */
-  filter: saturate(1);
+}
+
+.pic figcaption b {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.pic:hover figcaption b{
+  opacity: 1;
 }
 
 .pic>img {
@@ -857,10 +866,6 @@ linear-gradient(to top, #000 0%, rgba(0, 0, 0, 0) 50%),
   transform: scale(1.05);
 }
 
-.tile:hover .pic {
-  filter: grayscale(0);
-}
-
 /* .play {
   position: absolute;
   z-index: 2;
@@ -879,11 +884,6 @@ linear-gradient(to top, #000 0%, rgba(0, 0, 0, 0) 50%),
   padding-left: 3px;
   transition: opacity .3s, transform .3s
 } */
-
-.tile:hover .play {
-  opacity: 0;
-  transform: scale(1.5);
-}
 
 .tile figcaption {
   position: absolute;
@@ -1005,7 +1005,6 @@ linear-gradient(to top, #000 0%, rgba(0, 0, 0, 0) 50%),
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 18px;
-  background: black;
   /* border: 1px solid var(--line); */
   padding: clamp(22px, 3vw, 40px);
   border-radius: 6px;
@@ -1028,7 +1027,7 @@ linear-gradient(to top, #000 0%, rgba(0, 0, 0, 0) 50%),
 .form select,
 .form textarea {
   font: 300 16px var(--sans);
-  color: var(--ink);
+  color: black;
   padding: 12px 14px;
   border: 1px solid var(--line);
   border-radius: 4px;
@@ -1175,6 +1174,25 @@ footer a:hover {
     display: block;
   }
 
+    @keyframes bob-left {
+      50% {
+        transform: translateY(6px);
+      }
+    }
+  
+    .scroll {
+      position: absolute;
+      left: 20px;
+      transform: none;
+      animation-name: bob-left;
+    }
+.hero-in {
+  position: relative;
+  z-index: 2;
+  padding: calc(var(--nav) + 30px) var(--pad) 90px;
+  max-width: 900px
+}
+
   .nav nav {
     position: fixed;
     top: var(--nav);
@@ -1192,6 +1210,17 @@ footer a:hover {
     pointer-events: none;
     transition: opacity .3s, transform .3s
   }
+
+.gallery {
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 42vw;
+  gap: 4px;
+}
+
+.shot.wide,
+.shot.big {
+  grid-column: span 2;
+}
 
      #choices {
        grid-template-columns: 1fr !important;
@@ -1213,6 +1242,10 @@ footer a:hover {
     height: 100%;
   }
 
+  .hero .eyebrow {
+    font-size: 15px;
+  }
+
   .rec em {
     display: none;
   }
@@ -1223,34 +1256,37 @@ footer a:hover {
     padding-top: 20px;
   }
 
-  .sec, .mosaic, .sec.alt {
-    padding: 50px 0 20px;
+  .sec, .sec.alt {
+    padding: 70px 0 20px;
   }
 
   .vgrid {
-    grid-template-columns: 1fr;
     padding: 0;
+    grid-template-columns: 1fr
   }
-    .gallery,
     .mgrid {
-      position: relative;
-      overflow: hidden;
       columns: 1;
       column-gap: 0;
       padding: 0;
     }
 
-  .tile {
-    grid-column: 1/-1;
-  }
-
   .mgrid .tile {
     margin-bottom: 0;
   }
 
+    .tile {
+      grid-column: 1/-1
+    }
+
   .pic {
     height: 56vw;
   }
+
+    .tile .pic figcaption b {
+      font-size: medium;
+      opacity: 1;
+      transition: opacity 0.5s ease;
+    }
 
   /* .reel {
     width: 150px;
@@ -1297,47 +1333,4 @@ footer a:hover {
   .scroll {
     animation: none
   }
-}
-
-@keyframes bob-left {
-  50% {
-    transform: translateY(6px);
-  }
-}
-
-.scroll {
-  position: absolute;
-  left: 20px;
-  transform: none;
-  animation-name: bob-left;
-
-}
-
-.page-banner {
-  height: 50vh;
-  min-height: 340px;
-}
-
-/* keep the subject in view when the photo is cropped to a narrow screen */
-.page-banner img {
-  object-position: 60% center;
-}
-
-/* the left shading is less useful on a narrow screen, so strengthen the bottom fade instead */
-.page-banner::after {
-  background:
-    linear-gradient(to top, #000 0%, rgba(0, 0, 0, 0) 65%),
-    linear-gradient(to bottom, rgba(0, 0, 0, .7), rgba(0, 0, 0, 0) 30%);
-}
-
-.page-banner-text {
-  padding: 0 var(--pad) 32px;
-}
-
-.page-banner .eyebrow {
-  font-size: 15px;
-}
-
-.page-banner h1 {
-  font-size: clamp(44px, 14vw, 64px);
 }
