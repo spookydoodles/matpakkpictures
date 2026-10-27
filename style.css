@@ -68,6 +68,8 @@ a {
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(2, 400px);
   gap: 10px;
+  border-radius: 26px;
+  overflow: hidden;
 }
 
 .choices img{
@@ -83,13 +85,13 @@ a {
     position: absolute;
     inset: 0;
     content: "";
-  background: linear-gradient(to bottom,
-        rgba(0, 0, 0, 1) 0%,
+  /* background: linear-gradient(to bottom,
+        rgba(0, 0, 0, 1) 0%, */
         /* solid black at the very top */
-        rgba(0, 0, 0, .40) 5%,
-        rgba(0, 0, 0, 0) 100%
+        /* rgba(0, 0, 0, .40) 5%,
+        rgba(0, 0, 0, 0) 6% */
         /* clear at the bottom */
-      );
+      /* ); */
     pointer-events: none;
 }
 
@@ -796,20 +798,20 @@ linear-gradient(to top, #000 0%, rgba(0, 0, 0, 0) 50%),
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom,
-        rgba(0, 0, 0, 1) 0%,
+  /* background: linear-gradient(to bottom,
+        rgba(0, 0, 0, 1) 0%, */
         /* solid black at the very top */
-        rgba(0, 0, 0, .40) 5%,
-        rgba(0, 0, 0, 0) 100%
+        /* rgba(0, 0, 0, .40) 5%,
+        rgba(0, 0, 0, 0) 6% */
         /* clear at the bottom */
-      ),
+      /* ),
       linear-gradient(to top,
-          rgba(0, 0, 0, 1) 0%,
+          rgba(0, 0, 0, 1) 0%, */
           /* solid black at the very top */
-          rgba(0, 0, 0, .40) 5%,
-          rgba(0, 0, 0, 0) 100%
+          /* rgba(0, 0, 0, .40) 5%,
+          rgba(0, 0, 0, 0) 6% */
           /* clear at the bottom */
-        );
+        /* ); */
       
   pointer-events: none;
 }
@@ -827,7 +829,7 @@ linear-gradient(to top, #000 0%, rgba(0, 0, 0, 0) 50%),
   position: relative;
   height: var(--h, 300px);
   overflow: hidden;
-  border-radius: 2px;
+  border-radius: 20px;
   container-type: size;
   /* filter: grayscale(1); */
   /* background: linear-gradient(135deg, #e9e1d3, #cfc2ab); */
@@ -1235,11 +1237,17 @@ footer a:hover {
   .nav nav.open {
     transform: none;
     background: transparent;
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     opacity: 1;
     pointer-events: auto;
     height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .nav nav.open a{
+    font-weight: bold;
   }
 
   .hero .eyebrow {
