@@ -24,12 +24,13 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: var(--nav);
   overflow-x: clip;
+  background-color: #5f6864;
 }
 
 body {
   overflow-x: hidden;
   margin: 0;
-  background: var(--bg);
+  background: #5f6864;
   color: var(--ink);
   font-family: var(--sans);
   font-weight: 300;
