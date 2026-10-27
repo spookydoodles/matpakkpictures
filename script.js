@@ -23,13 +23,13 @@ const VIDEOS = {
   ],
 
   musicvideos: [
-    { id: "huXEOj1BBoU", title: "Magidom - Állandó Változás", h: 300 },
-    { id: "KivYRftLus0", title: "Magidom - Királydráma", h: 300 },
+    { id: "huXEOj1BBoU", title: "Magidom - Állandó Változás", h: 300,},
     { id: "8kePefatqBM", title: "Magidom - Van Az a Pénz", h: 300 },
     { id: "TAtm_aNAHqM", title: "Goodbye Darjeeling - No Idol", h: 300 },
     { id: "IDUgsByn1Ak", title: "Goodbye Darjeeling - Secret Rooms", h: 300 },
     { id: "xMntfG0gzNA", title: "Goodbye Darjeeling - Darwinien", h: 300 },
     { id: "A-pF38JtAH8", title: "Systemless - Departure", h: 300 },
+    { id: "KivYRftLus0", title: "Magidom - Királydráma", h: 300 },
     { id: "la65Qmse9VY", title: "Magidom - NE LOPJ", h: 300 },
   ],
 };
