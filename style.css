@@ -80,12 +80,14 @@ a {
 .choices:hover img {
   transform: scale(1.12);
   transition: transform .9s cubic-bezier(.2, .8, .2, 1);
+  filter: brightness(1.3)
 }
 
 #choices::after {
     position: absolute;
     inset: 0;
     content: "";
+    background: rgba(0, 0, 0, 0.2);
   /* background: linear-gradient(to bottom,
         rgba(0, 0, 0, 1) 0%, */
         /* solid black at the very top */
@@ -94,6 +96,12 @@ a {
         /* clear at the bottom */
       /* ); */
     pointer-events: none;
+}
+
+.choices:hover video {
+  transform: scale(1.12);
+  transition: transform .9s cubic-bezier(.2, .8, .2, 1);
+  filter: brightness(1.2)
 }
 
 .choices:nth-child(-n+2) {
@@ -106,6 +114,13 @@ a {
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+#choices video {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .choices {
@@ -123,6 +138,7 @@ a {
   font-size: 29px;
   letter-spacing: 0.2em;
   background: rgba(0, 0, 0, 0.35);
+  pointer-events: none;
 }
 
 .col img {
@@ -167,6 +183,66 @@ iframe {
 
 p {
   color: var(--white) !important;
+}
+
+.liveshows {
+  display: grid;
+  padding:200px 200px;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+}
+
+.shorts {
+  display: grid;
+  grid-template-columns: repeat(4, 180px);
+  gap: 10px;
+}
+
+.short {
+  display: block;
+  position: relative;
+  aspect-ratio: 9 /16;
+  border-radius: 20px;
+}
+
+.short img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+  border-radius: 20px;
+}
+
+.short:hover img {
+  transform: scale(1.05);
+}
+
+.short span {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: white;
+  font-size: 24px;
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.showstext {
+  display: grid;
+  justify-content: center;
+  text-align: justify;
+}
+
+.showstext h2 {
+  text-align: center;
+  font-size: clamp(32px, 4vw, 56px);
+  margin-bottom: 20px;
+}
+
+.showstext p {
+  font-size: 16px;
+  line-height: 1.8;
 }
 
 /* #photography{
@@ -1227,6 +1303,44 @@ footer a:hover {
   gap: 4px;
 }
 
+.liveshows {
+  display: flex;
+  flex-direction: column;
+  padding: 80px 20px 40px;
+  gap: 25px;
+}
+
+.showstext {
+  order: -1;
+  text-align: left;
+}
+
+.showstext h2 {
+  text-align: left;
+  font-size: 36px;
+  margin-bottom: 15px;
+}
+
+.showstext p {
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.shorts {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  width: 100%;
+}
+
+.short {
+  width: 100%;
+  border-radius: 12px;
+}
+
+.short img {
+  border-radius: 12px;
+}
+
 .shot.wide,
 .shot.big {
   grid-column: span 2;
@@ -1252,11 +1366,6 @@ footer a:hover {
     height: 100%;
     display: flex;
     align-items: center;
-  }
-
-  .nav nav.open a{
-    font-weight: bold;
-    text-shadow: 0 0 10px black;
   }
 
   .hero .eyebrow {

@@ -32,7 +32,11 @@ const VIDEOS = {
     { id: "KivYRftLus0", title: "Magidom - Királydráma", h: 300 },
     { id: "la65Qmse9VY", title: "Magidom - NE LOPJ", h: 300 },
   ],
-};
+}
+
+const motionVideos = document.querySelectorAll('.motion-video');
+
+const isTouchDevice = window.matchMedia('(hover: none)').matches;
 
 
 /* =====================================================
@@ -158,7 +162,6 @@ document.querySelectorAll(".mgrid").forEach(function (grid) {
     grid.appendChild(createTile(video, index, videos));
   });
 });
-
 
 /* =====================================================
    6. LIGHTBOX (the pop-up video player with prev / next)
@@ -292,4 +295,18 @@ shortTiles.forEach(function (tile) {
   tile.addEventListener("keydown", function (event) {
     if (event.key === "Enter") play();
   });
+});
+
+motionVideos.forEach(video => {
+  if (isTouchDevice) {
+    video.play();
+  } else {
+    video.addEventListener('mouseenter', () => video.play());
+
+    video.addEventListener('mouseleave', () => {
+      video.pause();
+      video.currentTime = 0;
+      video.load();
+    });
+  }
 });
