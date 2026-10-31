@@ -39,6 +39,7 @@ const motionVideos = document.querySelectorAll('.motion-video');
 const isTouchDevice = window.matchMedia('(hover: none)').matches;
 
 
+
 /* =====================================================
    2. SMALL HELPERS
    ===================================================== */
@@ -235,6 +236,7 @@ window.addEventListener("keydown", function (event) {
 });
 
 
+
 /* =====================================================
    7. SCROLL ANIMATIONS
    Anything with class "rv" fades in when it scrolls into view.
@@ -268,33 +270,33 @@ function stopAllShorts() {
   });
 }
 
-shortTiles.forEach(function (tile) {
-  const id = tile.dataset.id;
-  const img = tile.querySelector("img");
+// shortTiles.forEach(function (tile) {
+//   const id = tile.dataset.id;
+//   const img = tile.querySelector("img");
 
-  // sharper thumbnail if YouTube has one, otherwise keep the one from the HTML
-  const sharp = new Image();
-  sharp.onload = function () { if (sharp.naturalWidth > 200) img.src = sharp.src; };
-  sharp.src = "https://i.ytimg.com/vi/" + id + "/maxresdefault.jpg";
+//   // sharper thumbnail if YouTube has one, otherwise keep the one from the HTML
+//   const sharp = new Image();
+//   sharp.onload = function () { if (sharp.naturalWidth > 200) img.src = sharp.src; };
+//   sharp.src = "https://i.ytimg.com/vi/" + id + "/maxresdefault.jpg";
 
-  function play() {
-    if (tile.classList.contains("playing")) return;
-    stopAllShorts();                            // only one plays at a time
-    const frame = document.createElement("iframe");
-    frame.src = "https://www.youtube-nocookie.com/embed/" + id +
-                "?autoplay=1&playsinline=1&rel=0&loop=1&playlist=" + id;
-    frame.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
-    frame.allowFullscreen = true;
-    frame.title = img.alt;
-    tile.appendChild(frame);
-    tile.classList.add("playing");
-  }
+//   function play() {
+//     if (tile.classList.contains("playing")) return;
+//     stopAllShorts();                            // only one plays at a time
+//     const frame = document.createElement("iframe");
+//     frame.src = "https://www.youtube-nocookie.com/embed/" + id +
+//                 "?autoplay=1&playsinline=1&rel=0&loop=1&playlist=" + id;
+//     frame.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
+//     frame.allowFullscreen = true;
+//     frame.title = img.alt;
+//     tile.appendChild(frame);
+//     tile.classList.add("playing");
+//   }
 
-  tile.addEventListener("click", play);
-  tile.addEventListener("keydown", function (event) {
-    if (event.key === "Enter") play();
-  });
-});
+//   tile.addEventListener("click", play);
+//   tile.addEventListener("keydown", function (event) {
+//     if (event.key === "Enter") play();
+//   });
+// });
 
 motionVideos.forEach(video => {
   if (isTouchDevice) {
@@ -308,4 +310,75 @@ motionVideos.forEach(video => {
       video.load();
     });
   }
+});
+
+/* =====================================================
+   8. PHOTO LIGHTBOX
+   Opens gallery photos large, with previous / next arrows
+   ===================================================== */
+
+const photoImages = document.querySelectorAll(".gallery .shot img");
+const photoLightbox = $("#photoLightbox");
+const plbImage = $("#plbImage");
+const plbPrev = $("#plbPrev");
+const plbNext = $("#plbNext");
+const plbClose = $("#plbClose");
+
+let currentPhotoIndex = 0;
+
+function showPhoto(index) {
+  currentPhotoIndex =
+    (index + photoImages.length) % photoImages.length;
+
+  const photo = photoImages[currentPhotoIndex];
+
+  plbImage.src = photo.src;
+  plbImage.alt = photo.alt || "";
+}
+
+function openPhotoLightbox(index) {
+  currentPhotoIndex = index;
+  showPhoto(currentPhotoIndex);
+
+  photoLightbox.classList.add("open");
+  photoLightbox.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+}
+
+function closePhotoLightbox() {
+  photoLightbox.classList.remove("open");
+  photoLightbox.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "";
+}
+
+photoImages.forEach(function (image, index) {
+  image.addEventListener("click", function () {
+    openPhotoLightbox(index);
+  });
+});
+
+plbClose.addEventListener("click", closePhotoLightbox);
+
+plbPrev.addEventListener("click", function () {
+  showPhoto(currentPhotoIndex - 1);
+});
+
+plbNext.addEventListener("click", function () {
+  showPhoto(currentPhotoIndex + 1);
+});
+
+// Clicking the dark area around the photo closes it
+photoLightbox.addEventListener("click", function (event) {
+  if (event.target === photoLightbox) {
+    closePhotoLightbox();
+  }
+});
+
+// Keyboard controls
+window.addEventListener("keydown", function (event) {
+  if (!photoLightbox.classList.contains("open")) return;
+
+  if (event.key === "Escape") closePhotoLightbox();
+  if (event.key === "ArrowLeft") showPhoto(currentPhotoIndex - 1);
+  if (event.key === "ArrowRight") showPhoto(currentPhotoIndex + 1);
 });
