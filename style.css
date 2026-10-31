@@ -1511,12 +1511,15 @@ footer a:hover {
   gap: 4px;
 }
 
+.sec.alt.photospage{
+  padding: 20px 0;
+}
 .photospage {
-  padding: 0;
+  inset: 0;
 }
 
 .vbanner {
-  min-height: 46vh;
+  min-height: 16vh;
 }
 
 .vtext {
@@ -1589,17 +1592,20 @@ footer a:hover {
        grid-row: auto !important;
      }
 
+
+
   .nav nav.open {
     transform: none;
     background: transparent;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(50px);
+    -webkit-backdrop-filter: blur(50px);
     opacity: 1;
     pointer-events: auto;
     height: 100%;
     display: flex;
     align-items: center;
   }
+  
 
   .hero .eyebrow {
     font-size: 15px;
