@@ -38,12 +38,12 @@ body {
   line-height: 1.7;
 }
 
-.photospage {
+. {
   position: relative;
   isolation: isolate;
 }
 
-.photospage>img {
+.>img {
   position: fixed;
   inset: 0;
   z-index: -1;
@@ -702,7 +702,7 @@ linear-gradient(to top, #000 0%, rgba(0, 0, 0, 0) 50%),
 }
 
 .sec.alt.photospage{
-  padding: var(--nav) 100px 50px;
+  /* padding: var(--nav) 100px 50px; */
   margin: 0 8px;
 }
 
