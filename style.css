@@ -209,12 +209,16 @@ p {
 }
 
 /* sticky footer */
+.about-page,
+.contact-page,
 .reels-page {
   min-height: 100vh;
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
 }
+
+
 
 .reels-page main {
   flex: 1;
@@ -315,15 +319,17 @@ body:not(.home) .nav.solid {
 
 .short img {
   width: 100%;
-  height: 80%;
+  height: 100%;
   max-width: none;
   object-fit: cover;
   display: block;
   transition: transform .6s cubic-bezier(.2, .8, .2, 1);
+  filter: brightness(0.9);
 }
 
 .short:hover img {
   transform: scale(1.05);
+  filter: brightness(1);
 }
 
 /* ---------- scroll animations (replay every time) ---------- */
@@ -425,7 +431,7 @@ body:not(.home) .nav.solid {
   align-items: center;
   justify-content: space-between;
   height: calc(var(--nav) + env(safe-area-inset-top));
-  padding: env(safe-area-inset-top, 0) var(--pad) 0;
+  padding: 0 var(--pad) 0;
   color: #fff;
   /* transition: background .4s, color .4s, box-shadow .4s */
 }
@@ -868,7 +874,7 @@ linear-gradient(to top, #000 0%, rgba(0, 0, 0, 0) 50%),
 }
 
 .bio h2 {
-font-size: clamp(45px, 5vw, 76px);
+font-size: clamp(45px, 5vw, 56px);
   margin-bottom: 24px
 }
 
@@ -878,7 +884,9 @@ font-size: clamp(45px, 5vw, 76px);
 
 .bio p {
   max-width: 700px;
-  font-size: clamp(16px, 1.3vw, 20px);
+  font-size: 15px;
+  font-weight: bold;
+  text-transform: uppercase;
   line-height: 1.9;
   margin-bottom: 22px;
   text-align: justify;
@@ -946,7 +954,7 @@ font-size: clamp(45px, 5vw, 76px);
   columns: 2;
   /* column-width: 10px; */
   column-gap: 50px;
-  padding: var(--nav)
+  padding: var(--nav) var(--pad)
 }
 
 .mgrid .tile {
@@ -972,7 +980,7 @@ font-size: clamp(45px, 5vw, 76px);
   letter-spacing: 0.2em;
   text-transform: uppercase;
   font-weight: bold;
-    text-shadow: 0 2px 14px rgba(0, 0, 0, .7);
+  text-shadow: 0 2px 14px rgba(0, 0, 0, .7);
 }
 
 .mgrid .pic::after {
@@ -1002,7 +1010,7 @@ font-size: clamp(45px, 5vw, 76px);
 }
 
 .pic figcaption b {
-  opacity: 0;
+  opacity: 1;
   transition: opacity 0.5s ease;
 }
 
@@ -1017,7 +1025,8 @@ font-size: clamp(45px, 5vw, 76px);
   height: 100%;
   object-fit: cover;
   transition: transform 0.5s ease,
-    filter 0.5s ease
+    filter 0.5s ease;
+      filter: brightness(0.3);
 }
 
 .pic iframe {
@@ -1033,7 +1042,7 @@ font-size: clamp(45px, 5vw, 76px);
 
 .tile:hover .pic>img {
   transform: scale(1.05);
-  filter: brightness(0.3);
+  filter: brightness(0.6);
 }
 
 /* .play {
@@ -1478,7 +1487,7 @@ footer a:hover {
     align-items: flex-start;
     gap: 6px;
     padding: 20px var(--pad) 28px;
-    background: rgba(255, 255, 255, .97);
+    /* background: rgba(255, 255, 255, .97); */
     color: var(--ink);
     box-shadow: 0 20px 30px -20px rgba(0, 0, 0, .2);
     transform: translateY(-12px);
@@ -1532,6 +1541,10 @@ footer a:hover {
 
 .shorts-sec {
   padding-bottom: 60px;
+}
+
+.vwrap {
+  padding: var(--nav) 0;
 }
 
 .shorts {
@@ -1593,19 +1606,39 @@ footer a:hover {
      }
 
 
+/* No blur directly on the parent */
+#nav.open {
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  isolation: isolate;
+  overflow: visible;
+}
 
-  .nav nav.open {
-    transform: none;
-    background: transparent;
-    backdrop-filter: blur(50px);
-    -webkit-backdrop-filter: blur(50px);
-    opacity: 1;
-    pointer-events: auto;
-    height: 100%;
-    display: flex;
-    align-items: center;
-  }
-  
+/* One full-screen background behind the bar AND menu */
+#nav.open::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(100px);
+  -webkit-backdrop-filter: blur(100px);
+}
+
+/* Menu sits above that background */
+#nav nav.open {
+  transform: none;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  opacity: 1;
+  pointer-events: auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
 
   .hero .eyebrow {
     font-size: 15px;
@@ -1615,15 +1648,24 @@ footer a:hover {
     display: none;
   }
 
+  .about-page {
+    padding: 0;
+  }
+
   .about,
   .contact {
     grid-template-columns: 1fr;
-    padding-top: 20px;
+    /* padding-top: 20px; */
+  }
+
+  .about .photo {
+    height: 80%;
   }
 
   .sec, .sec.alt {
-    padding: 70px 0 20px;
+    padding: var(--nav) 0 20px;
   }
+
 
   .vgrid {
     padding: 0;

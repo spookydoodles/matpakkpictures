@@ -93,6 +93,7 @@ function updateNavbar() {
 
 function setMenuOpen(isOpen) {
   menu.classList.toggle("open", isOpen);
+  nav.classList.toggle("open", isOpen);
   burger.setAttribute("aria-expanded", isOpen);
 }
 
@@ -106,6 +107,10 @@ menu.addEventListener("click", function (event) {
     setMenuOpen(false);
   }
 });
+
+// nav.addEventListener("click", function (){
+//   setMenuOpen(!nav.classList.contains("open"));
+// });
 
 
 /* =====================================================
