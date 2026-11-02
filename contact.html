@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Poppins:wght@500&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="about-contact.css">
 </head>
 
 <body class="contact-page">
@@ -32,7 +33,7 @@
     <a href="./contact.html" class="cta">Contact</a>
         </nav>
     </header>
-<!-- 
+
             <section class="vbanner">
                 <img src="./images/pexels-george-charry-2643329-4218027.jpg" alt="">
                 <div class="vbanner-text">
@@ -41,34 +42,34 @@
                     <p class="full small">Or just message me at <a href="mailto:matpakkpictures@gmail.com">matpakkpictures@gmail.com</a>.
                     </p>
                 </div>
-            </section> -->
+            </section>
 
-<section class="sec alt" id="contact">
-    <div class="sec-h rv" style="margin-bottom: 0px;"><span></span>
-        <h2>Contact</h2>
-        <p>Reach out with any questions or requests you have!</p>
-        <p class="full small">Or just message me at <a
-                href="mailto:matpakkpictures@gmail.com">matpakkpictures@gmail.com</a>.</p>
-    </div>
-    <div class="contact">
+<section class="sec" id="contact">
+    <div class="c2 rv">
+        <p class="eyebrow">Contact</p>
+        <h2>Let’s talk</h2>
+        <p class="c2-lead">Tell me what you’re planning and when. A few lines is plenty.</p>
+        <p class="c2-mail"><a href="mailto:matpakkpictures@gmail.com">matpakkpictures@gmail.com</a> &nbsp;·&nbsp; <a
+                href="https://www.instagram.com/matpakk/">@matpakk</a></p>
 
-        <form class="form rv r" action="https://formspree.io/f/mkjorlvb" method="POST">
-            <label>Name (required)<input name="name" required autocomplete="name"></label>
-            <label>Email Address (required)<input name="email" type="email" required autocomplete="email"></label>
-            <label>Subject
-                <select name="type">
-                    <option>Wedding</option>
-                    <option>Concert</option>
-                    <option>Music Video</option>
-                    <option>General inquiry</option>
-                </select>
-            </label>
-            <label>Date<input name="date" type="date"></label>
-            <label class="full">Message<textarea name="message" rows="5" required></textarea></label>
-            <button class="btn full" type="submit">Submit</button>
-            <!-- <p class="full small">Vagy csak írj emailt: <a href="mailto:hello@example.com">kevely.mate@valami.com</a> vagy keress <a href="https://www.instagram.com/matpakk/">Instagramon.</a></p> -->
+        <form class="form2" action="https://formspree.io/f/mkjorlvb" method="POST">
+            <fieldset class="chips2">
+                <legend>What is it for?</legend>
+                <div>
+                    <label><input type="radio" name="type" value="Wedding" checked><span>Wedding</span></label>
+                    <label><input type="radio" name="type" value="Concert"><span>Concert</span></label>
+                    <label><input type="radio" name="type" value="Music video"><span>Music video</span></label>
+                    <label><input type="radio" name="type" value="Something else"><span>Something else</span></label>
+                </div>
+            </fieldset>
+            <div class="row2">
+                <label class="f">Name<input name="name" required autocomplete="name"></label>
+                <label class="f">Email<input name="email" type="email" required autocomplete="email"></label>
+            </div>
+            <label class="f">Date (if you have one)<input name="date" type="date"></label>
+            <label class="f">Message<textarea name="message" rows="5" required></textarea></label>
+            <button class="btn" type="submit">Send message</button>
         </form>
-
     </div>
 </section>
 

@@ -5,7 +5,7 @@
   --ink: rgb(248, 248, 248);;
   --mute: #7a746b;
   --line: #e8e1d6;
-  --gold: #b79a6a;
+  --gold: white;
   --grey: #edece9;
   --gold-d: #8f7347;
   --serif: "Poppins", Georgia, serif;
@@ -90,7 +90,7 @@ a {
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(2, 400px);
   gap: 10px;
-  border-radius: 26px;
+  /* border-radius: 26px; */
   overflow: hidden;
 }
 
@@ -208,6 +208,10 @@ p {
   margin-inline: auto;
 }
 
+.vwrap .shorts {
+  margin: 0;
+}
+
 /* sticky footer */
 .about-page,
 .contact-page,
@@ -235,7 +239,7 @@ body:not(.home) .nav.solid {
   position: relative;
   display: grid;
   place-items: center;
-  min-height: 16vh;
+  min-height: 26vh;
   padding: calc(var(--nav) + env(safe-area-inset-top)) var(--pad) 40px;
   text-align: center;
   overflow: hidden;
@@ -300,7 +304,8 @@ body:not(.home) .nav.solid {
 
 /* 3. shorts */
 .shorts-sec {
-  padding: var(--pad);
+  padding: 30px var(--pad) 60px;
+  margin: 0;
 }
 
 .shorts {
@@ -364,6 +369,7 @@ body:not(.home) .nav.solid {
   grid-auto-flow: dense;
   /* fills holes so there are no gaps */
   gap: 8px;
+  margin: 0;
 }
 
 .gallery .shot img {
@@ -696,7 +702,7 @@ linear-gradient(to top, #000 0%, rgba(0, 0, 0, 0) 50%),
 
 /* ---------- sections ---------- */
 .sec {
-  padding: 50px var(--pad) 50px;
+  padding: 0 var(--pad) 50px;
   margin: 0 8px;
 }
 
@@ -708,7 +714,6 @@ linear-gradient(to top, #000 0%, rgba(0, 0, 0, 0) 50%),
 .sec.alt.photospage{
   padding: var(--nav) var(--pad);
   /* padding: var(--nav) 100px 50px; */
-  margin: 0 8px;
 }
 
 /* .sec.alt {
@@ -750,7 +755,7 @@ linear-gradient(to top, #000 0%, rgba(0, 0, 0, 0) 50%),
 .about {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: clamp(30px, 5vw, 70px);
+  gap: 50px;
   align-items: center;
 
   width: 100%;
@@ -766,7 +771,7 @@ linear-gradient(to top, #000 0%, rgba(0, 0, 0, 0) 50%),
   height: 600px;
   aspect-ratio: 4 / 3;
   overflow: hidden;
-  border-radius: 20px;
+  /* border-radius: 20px; */
 }
 
 .photo img {
@@ -912,20 +917,22 @@ font-size: clamp(45px, 5vw, 56px);
 }
 
 .kit li {
-  border: 1px solid var(--line);
-  border-radius: 99px;
+  /* border: 1px solid var(--line); */
+  /* border-radius: 99px; */
   padding: 8px 18px;
   font-size: 13px;
   letter-spacing: .06em;
-  background: #fff;
-  color: #000;
+  /* background: #fff; */
+  color: white;
   transition: border-color .3s, color .3s
 }
 
 .kit li:hover {
   border-color: var(--gold);
-  color: var(--gold-d)
+  color: red;
 }
+
+
 
 /* video tiles: edge to edge, tight gaps, caption inside the video */
 #weddings,
@@ -1663,7 +1670,7 @@ footer a:hover {
   }
 
   .sec, .sec.alt {
-    padding: var(--nav) 0 20px;
+    padding: 0 0 20px;
   }
 
 
